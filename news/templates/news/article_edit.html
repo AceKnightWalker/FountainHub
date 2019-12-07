@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Edit article{% endblock %}
+
+
+{% block content %}
+
+<!-- Content -->
+<div id="content">
+{% if request.user.is_authenticated and request.user == post.reporter %}
+    <h1>Edit article</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.media }}
+        {% if form.errors %}
+            <p class="errornote">Please correct the error below.</p>
+        {% endif %}
+
+		<fieldset class="module">
+            {{ form.non_field_errors }}
+            <div class="form-rows">
+                {{ form.picture.errors }}
+                <label for="{{ form.picture.id_for_label }}">Thumbnail:</label>
+                <p>
+                {{ form.picture }}</p>
+            </div>
+
+            <div class="form-rows">
+                {{ form.headline.errors }}
+                <label for="{{ form.headline.id_for_label }}">Headline:</label>
+                {{ form.headline }}
+            </div>
+
+            <div class="form-rows">
+                {{ form.content.errors }}
+                <label for="{{ form.content.id_for_label }}">Content:</label>
+                {{ form.content }}
+            </div>
+
+
+        </fieldset>
+            <div class="submit-row">
+                <input type="submit" value="Save" class="default">
+            </div>
+    </form>
+
+{% else %}
+<p class="errornote">Unauthorized access.</p>
+<p>Oops! Only authors have access to edit their posts.</p>
+{% endif %}
+
+</div>
+
+{% endblock %}

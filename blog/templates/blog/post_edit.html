@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}Edit post{% endblock %}
+
+
+{% block content %}
+
+<!-- Content -->
+<div id="content">
+{% if request.user.is_authenticated and request.user == post.author %}
+    <h1>Edit post</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.media }}
+        {% if form.errors %}
+            <p class="errornote">Please correct the error below.</p>
+        {% endif %}
+
+		<fieldset class="module">
+            {{ form.non_field_errors }}
+            <div class="form-rows">
+                {{ form.thumbnail.errors }}
+                <label for="{{ form.thumbnail.id_for_label }}">Thumbnail:</label>
+                <p>
+                {{ form.thumbnail }}</p>
+            </div>
+
+            <div class="form-rows">
+                {{ form.category.errors }}
+                <label for="{{ form.category.id_for_label }}">Category:</label>
+                {{ form.category }}
+            </div>
+
+            <div class="form-rows">
+                {{ form.title.errors }}
+                <label for="{{ form.title.id_for_label }}">Title:</label>
+                {{ form.title }}
+            </div>
+
+            <div class="form-rows">
+                {{ form.text.errors }}
+                <label for="{{ form.text.id_for_label }}">Text:</label>
+                {{ form.text }}
+            </div>
+
+        </fieldset>
+            <div class="submit-row">
+                <input type="submit" value="Save" class="default">
+            </div>
+    </form>
+
+{% else %}
+<p class="errornote">Unauthorized access.</p>
+<p>Oops! Only authors have access to edit their posts.</p>
+{% endif %}
+
+</div>
+
+{% endblock %}

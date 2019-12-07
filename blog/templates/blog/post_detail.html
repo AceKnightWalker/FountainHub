@@ -1,0 +1,169 @@
+
+{% extends "./blog_base.html" %}
+{% load static %}
+{% block title %}{{ post.title }}{% endblock %}
+
+{% if request.user.is_authenticated and request.user == post.author %}
+    {% block add_details %}
+        <a href="{% url 'blog:post-delete' post.slug%}">
+            <img class="post-icons" src="{% static 'blog/delete.png' %}">
+        </a>  
+        <a href="{% url 'blog:edit_post' post.slug%}">
+            <img class="post-icons" src="{% static 'blog/edit.png' %}">
+        </a>
+    {% endblock %}
+{% endif %}
+
+
+
+{% block post_detail %}
+    <div class="post-detail">
+        <div class="header">
+            <h1 class="post-title">{{ post.title }}
+            </h1>
+            <div class="post-info">
+                <span class="gap"></span>
+                <span class="post-span">{{ post.author }}</span>
+                <span class="gap"></span>
+                <span class="post-span">{{post.category}}</span>
+                <span class="gap"></span>
+                <span class="post-span">{{ total_likes }} Like{{ total_likes| pluralize }}</span>
+
+
+                <div id="meta-post">
+                    <p>{{post.published_date}}</p>
+                    <hr>
+                </div>           
+            </div>
+        </div>
+        <img src="{{ post.thumbnail.url }}" alt="Logo">
+
+
+        {{ post.text |safe }}
+
+
+        <div class="comment_form">
+            <span class="gap"></span>
+            <span class="post-span">{{ total_likes }} Like{{ total_likes| pluralize }}</span>
+            {% if request.user.is_authenticated %}
+                <form action="{% url 'blog:like_post' post.slug%}" method="post" style="padding-top: 10px;">
+                    {% csrf_token %}
+                    {% if is_liked %}
+                        <button class="btn btn-danger" type="submit" name="post_id" value="{{ post.id }}">Dislike</span></button>
+                    {% else %}
+                        <button class="btn btn-success" type="submit" name="post_id" value="{{ post.id }}">Like</button>
+                    {% endif %}
+                </form>
+                <hr>
+                
+            {% else %}
+                <div style="padding-top: 10px;"></div>
+                <div class="alert alert-warning" role="alert">
+                    <form action="{% url 'blog:post_login' post.slug%}" method="post">
+                        {% csrf_token %}
+                    You must be <button type="submit" class="btn btn-link" style="padding: 0px; padding-bottom: 5px;">logged in</button> to comment or like a post.
+                    </form>
+                </div>
+                {% endif %}
+        </div>
+        <div class="comments">
+            <h1 class="total-comments">{{comments.count}} Comment{{ comments.count| pluralize }}</h1>
+            {% for comment in comments %}
+                {% if comment.moderation %}
+                    <p>{{ comment.text|safe }}</p>
+                    <span class="gap"></span>
+                    <span class="name">{{ comment.name }}</span>
+                    <span class="date">({{comment.created_date}})</span>
+                    <hr>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        {% if request.user.is_authenticated %}
+        <div class="add_comment">
+            <h1 class="total-comments">Add a comment</h1>
+            <form action="" method="post">
+                    <fieldset class="module">
+                        {% csrf_token %}
+                        {{ comment_form.non_field_errors }}                
+                        <div>
+                            {{ commemnt_form.text.errors }}
+                            <label for="{{ form.text.id_for_label }}">Comment:</label>
+                            {{ comment_form.text }}
+                        </div>
+                    </fieldset>
+                        <input class="default" type="submit" value="Submit">
+                    </form>
+        </div>
+        {% endif %}
+    </div>
+{% endblock post_detail %}
+
+
+<!-- POPULAR POSTS -->
+{% block popular_posts %}
+    <div class="popular-posts">
+        <div class="title">
+            <h2><span class="gap"></span>Popular Posts</h2>
+            <span class="title-span"></span>
+        </div>
+        <div class="content">
+            <ul>
+                {% for post in popular_posts %}
+                    <li>
+                        <div class="item-content">
+                            <div class="item-thumbnail">
+                                <a href="{% url 'blog:details' post.slug %}">
+                                    <img src="{{ post.thumbnail.url }}" class="item-thumb" width="72", height="72", border="0">
+                                </a>
+                            </div>
+                            <div class="item-title">
+                                <a class="item-link" href="{% url 'blog:details' post.slug %}">{{post.title}}</a>
+                            </div>
+                            <div id="meta-post">
+                                <p>{{post.category}} - {{post.author}}</p>
+                            </div>
+                        </div>
+                        <div style="clear: both;"></div>
+                    </li>
+
+                {% endfor %}
+            </ul>
+        </div>  
+    </div>
+{% endblock popular_posts %}
+<!-- END POPULAR POSTS -->
+
+<!-- RANDOM POSTS-->
+{% block random_posts %}
+    <div class="popular-posts">
+        <div class="title">
+            <h2><span class="gap"></span>Random Posts</h2>
+            <span class="title-span"></span>
+        </div>
+        <div class="content">
+            <ul>
+                {% for post in random_posts %}
+                    <li>
+                        <div class="item-content">
+                            <div class="item-thumbnail">
+                                <a href="{% url 'blog:details' post.slug %}">
+                                    <img src="{{ post.thumbnail.url }}" class="item-thumb" width="72", height="72", border="0">
+                                </a>
+                            </div>
+                            <div class="item-title">
+                                <a class="item-link" href="{% url 'blog:details' post.slug %}">{{post.title}}</a>
+                            </div>
+                            <div id="meta-post">
+                                <p>{{post.published_date}}</p>
+                            </div>
+                        </div>
+                        <div style="clear: both;"></div>
+                    </li>
+
+                {% endfor %}
+            </ul>
+        </div>  
+    </div>
+{% endblock random_posts %}
+<!--END OF RANDOM POSTS-->

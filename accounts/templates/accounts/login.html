@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}login{% endblock title%}
+{% block content %}
+
+<div class="container">
+
+        <div class="row">
+            <div class="col-sm">
+            </div>
+
+            <div class="col-sm-4">
+                <div id="container">
+                    <div id="header">
+                        <h1>Welcome to FountainHub</h1>
+                    </div>
+                    <div id="content-main">
+                        <form method="POST" class="site-form" action="{% url 'login'%}">
+                            {% csrf_token %}
+                            {{ form.non_field_errors }}
+                            {% if request.GET.next %}
+                                <input type="hidden" name="next" value="{{ request.GET.next}}">
+                            {% endif %}
+                            <div class="form-row">
+                                {{ form.username.errors }}
+                                <label for="{{ form.username.id_for_label }}">Username:</label>
+                                {{ form.username }}
+                            </div>
+
+                            <div class="form-row">
+                                {{ form.password.errors }}
+                                <label for="{{ form.password.id_for_label }}">Password:</label>
+                                {{ form.password }}
+                            </div>
+                            <div class="submit-row">
+                                <input class="default" type="submit" value="Login">
+                                <p>
+                                <a href="{% url 'password_reset' %}">Forgot password?</a>
+                                </p>
+                                <p>
+                                <a href="{% url 'signup' %}">Create Account</a>
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+            </div>
+        </div>
+
+</div>
+{% endblock %}

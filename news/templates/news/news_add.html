@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Add news{% endblock %}
+
+
+{% block content %}
+
+<!-- Content -->
+<div id="content">
+{% if perms.news %}
+    <h1>Make a report</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.media }}
+        {% if form.errors %}
+            <p class="errornote">Please correct the error below.</p>
+        {% endif %}
+
+		<fieldset class="module">
+            {{ form.non_field_errors }}
+            <div class="form-rows">
+                {{ form.picture.errors }}
+                <label for="{{ form.picture.id_for_label }}">Thumbnail:</label>
+                <p>
+                {{ form.picture }}</p>
+            </div>
+
+            <div class="form-rows">
+                {{ form.headline.errors }}
+                <label for="{{ form.headline.id_for_label }}">Headline:</label>
+                {{ form.headline }}
+            </div>
+
+            <div class="form-rows">
+                {{ form.content.errors }}
+                <label for="{{ form.content.id_for_label }}">Content:</label>
+                {{ form.content }}
+            </div>
+
+
+        </fieldset>
+            <div class="submit-row">
+                <input type="submit" value="Save" class="default">
+            </div>
+    </form>
+
+{% else %}
+<p class="errornote">Unauthorized Access.</p>
+<p>Oops! Only users with accounts have access to create posts. <a class="nav-link" href="{% url 'signup'%}">Create your account now.</a></p>
+{% endif %}
+</div>
+
+
+
+{% endblock %}

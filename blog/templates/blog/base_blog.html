@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load static %}
+{% block header %}
+
+<div class="header-div">
+	<h1>Blog
+		{% if request.user.is_authenticated %}
+            <span class="post-span">
+                <a href="{% url 'blog:add_post' %}">
+                    <img class="post-icons" src="{% static 'blog/add.png' %}">
+                </a>  
+            </span>
+        {% endif %}
+	</h1>
+
+</div>
+
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-lg-8">
+			<!-- FOR THE INDEX PAGE OF THE BLOG -->
+			{% block post_list %}
+
+			{% endblock post_list %}
+			<!-- END OF THE INDEX PAGE OF THE BLOG -->
+
+			<!-- DETAIL PAGE OF BLOG -->
+			{% block post_detail %}
+
+			{% endblock post_detail %}
+			<!-- END OF DETAIL PAGE OF BLOG -->
+
+			<!--CATEGORY LISTS--->
+			{% block category_posts %}
+
+			{% endblock category_posts %}
+			<!-- END OF CATEGORY LISTS--->
+		</div>
+		<div class="col-lg-4">
+
+			<!-- POPULAR POSTS-->
+			{% block popular_posts %}
+
+			{% endblock popular_posts %}
+			<!-- END OF POPULAR POSTS-->
+
+
+			<!-- CATEGORIES -->
+				<div class="popular-posts">
+        			<div class="title">
+            			<h2><span class="gap"></span>Categories</h2>
+            			<span class="title-span"></span>
+        			</div>
+        		</div>
+				<ul class="list-group">
+					<li class="list-group-item"><a href="/blog/career">Career</a></li>
+					<li class="list-group-item"><a href="/blog/campus">Campus</a></li>
+					<li class="list-group-item"><a href="/blog/islam">Islam</a></li>
+					<li class="list-group-item"><a href="/blog/tutorial/">Tutorials</a></li>
+					<li class="list-group-item"><a href="/blog/interview/">Interviews</a></li>
+					<li class="list-group-item"><a href="/blog/others/">Others</a></li>
+				</ul>
+			<!-- END CATEGORIES -->
+
+			<!--OTHERS POST-->
+			{% block random_posts %}
+
+			{% endblock random_posts %}
+			<!--END OF OTHERS POSTS-->
+
+			<!-- END OF CONSTANT BETWEEN INDEX AND DETAIL -->
+		</div>
+	</div>
+</div>
+{% endblock content%}
+

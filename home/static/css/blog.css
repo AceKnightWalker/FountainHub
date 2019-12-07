@@ -1,0 +1,543 @@
+
+
+.item-content .item-thumbnail {
+	margin: 0 15px 0 0 !important;
+	width: 90px;
+	height: 70px;
+	float: left;
+	overflow: hidden;
+}
+
+.item-content .item-thumbnail a {
+	opacity: 1;
+	position: relative;
+	display: block;
+	overflow: hidden;
+	line-height: 0;
+}
+
+.popular-posts ul li a {
+	color: #1c1c1c;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 1.5em;
+}
+
+
+.popular-posts ul li img {
+	opacity: 1;
+	padding: 0;
+    width: 90px;
+    height: 70px;
+    max-width: 100%;
+}
+
+a img {
+	border: 0;
+	position: relative;
+}
+
+.item-thumb {
+	width:90px;
+	height:70px;
+	vertical-align:baseline;
+}
+
+.item-link {
+    color: #1c1c1c;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.5em;
+    vertical-align: baseline;
+}
+
+.content ul {
+    list-style: none;
+    padding: 0;
+    line-height: 1.2em;
+    font-weight: 700;
+    vertical-align: baseline;
+    outline: 0;
+    border: 0;
+}
+
+.content ul li:first-child {
+	padding-top: 0;
+	border-top: 0;
+}
+
+.content ul li {
+	overflow: hidden;
+	padding: 10px 0;
+	border-top: 1px dotted #f5f5f5
+}
+
+.item-content {
+	text-indent: 0;
+}
+
+a, a:visited {
+	text-decoration: none;
+}
+
+.popular-posts {
+	margin-bottom: 30px;
+}
+
+.popular-posts .item-title {
+	margin: 0;
+	padding: 0;
+	line-height: 0;
+}
+
+.popular-posts .title{
+	position: relative;
+	z-index: 1;
+	line-height: 33px;
+	clear: both;
+}
+
+.title-span {
+	content: "";
+	position: absolute;
+	z-index: 0;
+	top: 12px;
+	left: 0;
+	width: 100%;
+	border: 4px double #eee;
+}
+
+.title h2{
+	display: inline-block;
+	position: relative;
+	background-color: #fff;
+	color: #1c1c1c;
+	font-size: 15px;
+	letter-spacing: -.4px;
+	text-transform: uppercase;
+	font-weight: 700;
+	z-index: 1;
+	margin: 0 0 10px;
+	padding-right: 15px;
+	padding-left: 0px;
+}
+
+.post-outer {
+	line-height: 1.4;
+}
+
+.post {
+	margin: 0 0 15px;
+	padding-bottom: 15px;
+	border-bottom: 1px dotted #f5f5f5;
+	display: block;
+	overflow: hidden;
+	word-wrap: break-word;
+	position: relative;
+    min-height: 0;
+    line-height: 1.4;
+}
+
+.block-image {
+	position: relative;
+	float: left;
+}
+
+.block-image .thumb {
+	width: 100%;
+	position: relative;
+	display: block;
+	z-index: 2;
+	overflow: hidden;
+}
+
+.block-image .thumb a {
+	width: 100%;
+	display: block;
+}
+
+.thumb a img {
+	width: 100%;
+	height: auto;
+}
+.post-header {
+	line-height: 1.6;
+}
+
+.post-title {
+	color: #1c1c1c;
+	font-size: 19px;
+	line-height: 1.5em;
+	font-weight: 500;
+	text-decoration: none
+}
+
+body {
+	color: #333;
+	font-size: 14px;
+}
+
+
+.retitle h2 {
+	display: block;
+}
+
+.post h2 {
+	margin: 0 0 8px;
+	padding: 0 10px 0 0;
+	overflow: hidden;
+	position: relative;
+}
+
+.post h2 a {
+	color: #1c1c1c;
+	font-size: 19px;
+	line-height: 1.5em;
+	font-weight: 500;
+	text-decoration: none;
+}
+
+.date-header {
+	display: block;
+	overflow: hidden;
+	font-weight: 400;
+	margin: 0 !important;
+	padding: 0;
+	position: relative;
+	min-height: 0;
+}
+
+#meta-post {
+    font-size: 12px;
+    color: #bdbdbd;
+    line-height: 1.4em;
+}
+
+#meta-post p {
+    color: #bdbdbd;
+    margin-left: 0;
+    font-weight: 400;
+}
+
+.resumo {
+	margin-top: 10px;
+	font-size: 13px;
+	color: #919191;
+	line-height: 1.5em;
+}
+
+.resumo span {
+    display: block;
+    margin-bottom: 8px;
+    padding-right: 10px;
+}
+
+a.read-more {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 500;
+    text-align: left;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    white-space: nowrap;
+    line-height: 25px;
+    height: 25px;
+    color: #fff;
+    background-color: #000;
+    border-radius: 0;
+    font-size: 11px;
+    text-transform: uppercase;
+    padding: 0 10px;
+    margin-top: 3px;
+    outline: none;
+    border: none;
+    overflow: hidden;
+    border-left: 6px solid #FFD439;
+
+}
+
+.campus_list {
+	width: 100%;
+    float: left;
+    line-height: 1.4;
+    position: relative;
+    min-height: 0;
+    padding-bottom: 20px;
+}
+
+
+.box_title h2.title {
+	display: inline-block;
+    position: relative;
+    background-color: #fff;
+    color: #1c1c1c;
+    font-size: 15px;
+    letter-spacing: -.4px;
+    text-transform: uppercase;
+    font-weight: 700;
+    z-index: 1;
+    margin: 0;
+    padding-right: 15px;
+    padding-left: 25px;
+}
+
+.widget-content ul {
+	margin: 0;
+	padding: 0;
+	line-height: 1.2;
+	font-weight: 700;
+	list-style: none;
+}
+
+.widget-content ul li {
+	display: block;
+	width: 100%;
+	float: right;
+	margin: 0 0 10px;
+	padding: 0 0 10px;
+	border-bottom: 1px dotted #f5f5f5;
+	text-indent: 0;
+}
+
+.widget-content ul li:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: 0;
+
+}
+
+.widget-content .row .col-md-6 {
+	margin-bottom: 20px;
+}
+.box-thumbnail {
+    overflow: hidden;
+}
+
+
+ul li .box-thumbnail {
+    width: 90px;
+    height: 70px;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+ul li .recent-content {
+    display: table-cell;
+    padding-left: 15px;
+    padding-right: 5px;
+
+}
+
+.recent-content .recent-title a {
+    color: #1c1c1c;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.5em;
+}
+.bx-first {
+    width: 100%;
+    position: relative;
+    float: left;
+    padding-right: 1.4%;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.bx-item {
+	width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.bx-first .bf-content {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 2;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.bx-first .box-thumbnail {
+    position: relative;
+    width: 100%;
+}
+
+img {
+	width: 100%;
+	height: auto;
+}
+
+h1, h2, h3, h4 {
+    margin: 0;
+    position: relative;
+}
+
+.bx-first .bf-content .recent-title a {
+    display: block;
+    font-size: 18px;
+    color: #fff;
+    font-weight: 500;
+    line-height: 1.5em;
+    text-shadow: 0 .5px .5px rgba(34,34,34,0.3);
+    margin-bottom: 8px;
+
+}
+
+.delete-margin {
+	margin-bottom: 200px;
+}
+
+.bf-content .recent-date {
+	color: #ccc;
+}
+
+.recent-date {
+    color: #bdbdbd;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.list-group li a {
+	color: #1c1c1c
+}
+
+.list-group {
+	margin-bottom: 30px;
+}
+
+a, body, div, h1, h2, h3, h4, h5, h6, html, li, span, ul, font, img, p {
+	padding: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: baseline;
+    background: 0 0;
+}
+
+
+/* Detail*/
+
+.post-detail {
+	margin-top: 5px;
+	width: 100%;
+	float: left;
+}
+
+.post-detail .header {
+	position: relative;
+	float: left;
+	width: 100%;
+	display: block;
+}
+
+.post-detail .header .post-title {
+	font-weight: 300;
+	font-size: 30px;
+	color: #222222;
+	margin-bottom: 12px;
+	line-height: 1.4;
+}
+
+.post-info {
+	display: block;
+    float: left;
+    clear: both;
+    width: 100%;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.post-detail img {
+	width: 100%;
+	margin-bottom: 5px;
+}
+
+.post-info .post-span{
+	margin-right: 20px;
+}
+
+.gap {
+	content: "";
+	width: 10px;
+	height: 10px;
+	display: inline-block;
+	background-color: #EA0253;
+	left: 0;
+	top: 49%;
+	z-index: 5;
+}
+
+.title .gap {
+	width: 12px;
+	height: 12px;
+	margin-right: 10px;
+}
+
+.comments .name {
+	font-weight: 700;
+}
+
+.comments .date {
+	color: #bdbdbd;
+	font-weight: 400
+}
+.comments p {
+	margin-bottom: 5px;
+}
+.comment_form {
+	margin-bottom: 20px;
+}
+.alert-warning .alert-link {
+    color: #007bff;
+}
+
+.alert-link {
+    font-weight: 400;
+}
+
+.container-fluid {
+	margin-top: 15px;
+}
+
+.post-icons {
+	margin-bottom: -5px !important;
+	margin-top: 2px !important;
+	width: 40px !important;
+	float: right !important;
+	margin-left: 10px;
+}
+
+a .cancel-link {
+	display: inline-block;
+	vertical-align: middle;
+	height: 15px;
+	line-height: 15px;
+	background: #ddd;
+	border-radius: 4px;
+	padding: 10px 15px;
+	color: #333;
+	margin: 0 0 0 10px;
+}
+
+.form-rows p label {
+	float: revert;
+display: inline;
+}
+
+.header-div {
+	background: #92EA8D;
+	padding: 1px 10px;
+}
+
+.header-div h1 {
+	margin: 10px 7px 10px;
+	font-weight: 300;
+	font-size: 30px;
+	color: #fff;
+}
+
+.header-div h1 img {
+	margin-top: -3px !important;
+}
+

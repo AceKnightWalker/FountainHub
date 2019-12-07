@@ -1,0 +1,83 @@
+{% extends "./news_base.html" %}
+{% load static %}
+{% block title %}{{ article.headline }}{% endblock %}
+
+
+{% if perms.news and request.user == article.reporter %}
+    {% block add_details %}
+        <a href="{% url 'news:post-delete' article.slug%}">
+            <img class="post-icons" src="{% static 'news/delete.png' %}">
+        </a>  
+        <a href="{% url 'news:edit_post' article.slug%}">
+            <img class="post-icons" src="{% static 'news/edit.png' %}">
+        </a>
+    {% endblock %}
+{% endif %}
+
+{% block news_detail %}
+    <div class="post-detail">
+        <div class="header">
+            <h1 class="post-title">{{ article.headline }}
+            </h1>
+            <div class="post-info">
+                <span class="gap"></span>
+                <span class="post-span">{{ article.reporter }}</span>
+                <div id="meta-post">
+                    <p>{{article.pub_date}}</p>
+                    <hr>
+                </div>           
+            </div>
+        </div>
+        <img src="{{ article.picture.url }}">
+
+        {{ article.content |safe }}
+
+        
+        <div class="comments">
+            <h1 class="total-comments">{{article.comment_set.all.count}} Comment{{ article.comment_set.all.count| pluralize }}</h1>
+            <hr>
+            {% for comment in article.comment_set.all %}
+                {% if comment.moderation %}
+                    <p>{{ comment.text|safe }}</p>
+                    <span class="gap"></span>
+                    <span class="name">{{ comment.name }}</span>
+                    <span class="date">({{comment.created_date}})</span>
+                    <hr>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+
+        <div class="add_comment">
+            <h1 class="total-comments">Add a comment</h1>
+            {% if request.user.is_authenticated %}
+                
+                <form action="" method="post">
+                <fieldset class="module">
+                    {% csrf_token %}
+                    {{ form.non_field_errors }}                
+                    <div>
+                        {{ form.text.errors }}
+                        <label for="{{ form.text.id_for_label }}">Comment:</label>
+                        {{ form.text }}
+                    </div>
+                </fieldset>
+                    <input class="default" type="submit" value="Submit">
+                </form>
+            {% else %}
+                <div style="padding-top: 10px;"></div>
+                <div class="alert alert-warning" role="alert">
+                    <form action="{% url 'news:post_login' article.slug%}" method="post">
+                        {% csrf_token %}
+                    You must be <button type="submit" class="btn btn-link" style="padding: 0px; padding-bottom: 5px;">logged in</button> to comment.
+                    </form>
+                </div>
+            {% endif %}
+            <hr>
+        </div>
+    </div>
+
+
+    <div style="clear: both;"></div>
+    
+{% endblock news_detail %}

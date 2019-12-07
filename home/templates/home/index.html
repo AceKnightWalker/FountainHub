@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block header %}
+
+<div class="header-div">
+    <h1>Home</h1>
+</div>
+
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+
+<!-- Latest News -->
+<div class="campus_list" style="float: none;">
+    <div class="popular-posts">
+        <div class="title">
+            <h2><span class="gap"></span>Latest News</h2>
+            <span class="title-span"></span>
+        </div>
+    </div>
+    <div class="widget-content">
+        <div class="row">
+            <div class="col-md-6">
+                {% for article in first_career %}
+                    <div class="bx-first">
+                        <div class="bx-item">
+                            <div class="box-thumbnail">
+                                <a href="{% url 'news:detail' article.slug %}">
+                                    <img src="{{ article.picture.url }}">
+                                </a>
+                            </div>
+                            <div class="bf-content">
+                                <h3 class="recent-title">
+                                    <a href="{% url 'news:detail' article.slug %}">{{article.headline}}</a>
+                                </h3>
+                                <span class="recent-date">{{article.pub_date}} - {{article.author}}</span>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="col-md-6">
+                <ul>
+                    {% for article in article_list %}
+                        <li>
+                           <div class="box-thumbnail">
+                               <a href="{% url 'news:detail' article.slug %}">
+                                    <img src="{{ article.picture.url }}" width="90" height="70">
+                                </a>
+                           </div>
+                           <div class="recent-content">
+                               <h3 class="recent-title">
+                                    <a href="{% url 'news:detail' article.slug %}">{{article.headline}}</a>
+                                </h3>
+                               <span class="recent-date">{{article.pub_date}} - {{article.author}}</span>
+                           </div>
+                           <div class="clear"></div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End of Latest News-->
+
+<!-- Events -->
+<div class="popular-posts">
+    <div class="title">
+        <h2><span class="gap"></span>Upcoming Events</h2>
+        <span class="title-span"></span>
+    </div>
+</div>
+<div class="card-deck">
+    {% for event in event_list %}
+        <div class="card text-center" style="border: none;">
+                <img class="card-img-top" src="{{ event.thumbnail.url }}" alt="{{event.title}}" style="height: 250px;">
+            <div class="card-body">
+                <h2 class="post-title">{{event.title}}</h2>
+                <span class="recent-date">{{event.start_date}} - {{event.organizer}}</span>
+                <br>
+                <a class="read-more" href="{% url 'event:detail' event.slug %}">Read More</a>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+<!-- End of Events-->
+
+<!-- Random Posts-->
+<div class="popular-posts">
+    <div class="title" style="margin-left: 15px;">
+        <h2><span class="gap"></span>Popular Posts</h2>
+        <span class="title-span"></span>
+    </div>
+	{% for post in popular_posts %}
+		<div class="recent-posts">
+            <div class="post-outer">
+                <div class="post">
+                    <div class="container-fluid">
+                    <div class="row">
+                            <div  class="col-md-5">
+                                <div class="block-image">
+                                    <div class="thumb">
+                                        <a href="{% url 'blog:details' post.slug %}">
+                                            <img src="{{ post.thumbnail.url }}">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="post-header">
+                                </div>
+                                <article>
+                                    <font class="retitle">
+                                        <h2>
+                                            <a href="{% url 'blog:details' post.slug %}"> {{post.title}}</a>
+                                        </h2>
+                                    </font>
+                                    <div class="date-header">
+                                        <div id="meta-post">
+                                            <p>{{ post.published_date }} - {{post.author}} </p>
+                                        </div>
+                                        <div class="resumo">
+                                            <span>{{ post.text| truncatewords:20 |safe }}</span>
+                                            <br>
+                                            <a class="read-more" href="{% url 'blog:details' post.slug %}">Read More</a>
+                                        </div>
+                                        <div style="clear: both;"></div>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</div> 
+	{% endfor %}
+</div>
+<!-- End of Random Posts-->
+
+</div>
+{% endblock %}

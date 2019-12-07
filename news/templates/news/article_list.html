@@ -1,0 +1,83 @@
+{% extends "./news_base.html" %}
+{% block title %}news{% endblock %}
+
+{% block news_list %}
+	<div class="popular-posts">
+	    <div class="title" style="margin-left: 15px;">
+	        <h2><span class="gap"></span>News</h2>
+	        <span class="title-span"></span>
+	    </div>
+		{% for article in page_obj %}
+			<div class="recent-posts">
+	            <div class="post-outer">
+	                <div class="post">
+	                    <div class="container-fluid">
+	                    <div class="row">
+	                            <div  class="col-md-5">
+	                                <div class="block-image">
+	                                    <div class="thumb">
+	                                        <a href="{% url 'news:detail' article.slug %}">
+	                                            <img src="{{ article.picture.url }}">
+	                                        </a>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                            <div class="col-md-7">
+	                                <div class="post-header">
+	                                </div>
+	                                <article>
+	                                    <font class="retitle">
+	                                        <h2>
+	                                            <a href="{% url 'news:detail' article.slug %}"> {{article.headline}}</a>
+	                                        </h2>
+	                                    </font>
+	                                    <div class="date-header">
+	                                        <div id="meta-post">
+	                                            <p>{{ article.pub_date }} - {{article.author}}</p>
+	                                        </div>
+	                                        <div class="resumo">
+	                                            <span>{{ article.content| truncatewords:20 |safe }}</span>
+	                                            <br>
+	                                            <a class="read-more" href="{% url 'news:detail' article.slug %}">Read More</a>
+	                                        </div>
+	                                        <div style="clear: both;"></div>
+	                                    </div>
+	                                </article>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+			</div> 
+		{% endfor %}
+	</div>
+
+	<div id="pagination">
+	    <span class="current">
+	        Page {{ page_obj.number }} of {{ paginator.num_pages }}.
+	    </span>
+	    <ul class="pagination">
+	        {% if page_obj.has_previous %}
+	            <li class="page-item">
+	                <a class="page-link" aria-label="Previous" href="?page={{ page_obj.previous_page_number }}">
+	                <span aria-hidden="true">&laquo;</span>
+	                <span class="sr-only">Previous</span>
+	                </a>
+	            </li>
+	        {% endif %}
+	        
+	        {% for x in paginator.page_range %}
+	            <li class="page-item"><a class="page-link" href="?page={{ x }}">{{ x }}</a></li>
+	        {% endfor %}
+
+	        {% if page_obj.has_next %}
+	            <li class="page-item">
+	                <a class="page-link" aria-label="Next" href="?page={{ page_obj.next_page_number }}">
+	                <span aria-hidden="true">&raquo;</span>
+	                <span class="sr-only">Next</span>
+	                </a>
+	            </li>
+	        {% endif %}
+	    </ul>
+	</div>	
+{% endblock news_list %}  

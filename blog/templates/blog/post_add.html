@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Add post{% endblock %}
+
+
+{% block content %}
+
+<!-- Content -->
+<div id="content">
+{% if request.user.is_authenticated %}
+    <h1>Add post</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.media }}
+        {% if form.errors %}
+            <p class="errornote">Please correct the error below.</p>
+        {% endif %}
+
+		<fieldset class="module">
+            {{ form.non_field_errors }}
+            <div class="form-rows">
+                {{ form.thumbnail.errors }}
+                <label for="{{ form.thumbnail.id_for_label }}">Thumbnail:</label>
+                <p>
+                {{ form.thumbnail }}</p>
+            </div>
+
+            <div class="form-rows">
+                {{ form.category.errors }}
+                <label for="{{ form.category.id_for_label }}">Category:</label>
+                {{ form.category }}
+            </div>
+
+            <div class="form-rows">
+                {{ form.title.errors }}
+                <label for="{{ form.title.id_for_label }}">Title:</label>
+                {{ form.title }}
+            </div>
+
+            <div class="form-rows">
+                {{ form.text.errors }}
+                <label for="{{ form.text.id_for_label }}">Text:</label>
+                {{ form.text }}
+            </div>
+
+        </fieldset>
+            <div class="submit-row">
+                <input type="submit" value="Save" class="default">
+            </div>
+    </form>
+
+{% else %}
+<p class="errornote">Unauthorized Access.</p>
+<p>Oops! Only users with accounts have access to create posts. <a class="nav-link" href="{% url 'signup'%}">Create your account now.</a></p>
+{% endif %}
+</div>
+
+
+
+{% endblock %}

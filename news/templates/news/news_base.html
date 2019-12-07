@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+{% block header %}
+
+<div class="header-div">
+	<h1>News
+		{% if perms.news and request.user.is_authenticated %}
+            <span class="post-span">
+                <a href="{% url 'news:add_post' %}">
+                    <img class="post-icons" src="{% static 'blog/add.png' %}">
+                </a>  
+                {% block add_details %}
+            	{% endblock %}
+            </span>
+        {% endif %}
+	</h1>
+</div>
+
+{% endblock %}
+
+{% block content %}
+<div class="container">
+
+	{% block news_detail %}
+
+	{% endblock news_detail %}
+
+	{% block news_list %}
+
+	{% endblock news_list %}
+	
+</div>
+
+
+{% endblock content%}

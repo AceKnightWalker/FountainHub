@@ -1,0 +1,341 @@
+{% extends "./blog_base.html" %}
+{% block title %}Blog{% endblock %}
+
+
+{% block post_list %}
+<!-- RECENT POSTS -->
+<div class="popular-posts">
+    <div class="title" style="margin-left: 15px;">
+        <h2><span class="gap"></span>Recent Posts</h2>
+        <span class="title-span"></span>
+    </div>
+	{% for post in latest_posts_list %}
+		<div class="recent-posts">
+            <div class="post-outer">
+                <div class="post">
+                    <div class="container-fluid">
+                    <div class="row">
+                            <div  class="col-md-5">
+                                <div class="block-image">
+                                    <div class="thumb">
+                                        <a href="{% url 'blog:details' post.slug %}">
+                                            <img src="{{ post.thumbnail.url }}">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="post-header">
+                                </div>
+                                <article>
+                                    <font class="retitle">
+                                        <h2>
+                                            <a href="{% url 'blog:details' post.slug %}"> {{post.title}}</a>
+                                        </h2>
+                                    </font>
+                                    <div class="date-header">
+                                        <div id="meta-post">
+                                            <p>{{ post.published_date }} - {{post.author}}</p>
+                                        </div>
+                                        <div class="resumo">
+                                            <span>{{ post.text| truncatewords:20 |safe }}</span>
+                                            <br>
+                                            <a class="read-more" href="{% url 'blog:details' post.slug %}">Read More</a>
+                                        </div>
+                                        <div style="clear: both;"></div>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</div> 
+	{% endfor %}
+</div>
+<!-- END RECENT POSTS -->
+
+
+<!-- CATEGORIES POSTS -->
+
+<!--Career-->
+<div class="campus_list">
+    <div class="popular-posts">
+        <div class="title">
+            <h2><span class="gap"></span>Career</h2>
+            <span class="title-span"></span>
+        </div>
+    </div>
+    <div class="widget-content">
+        <div class="row">
+            <div class="col-md-6">
+                {% for post in first_career %}
+                    <div class="bx-first">
+                        <div class="bx-item">
+                            <div class="box-thumbnail">
+                                <a href="{% url 'blog:details' post.slug %}">
+                                    <img src="{{ post.thumbnail.url }}">
+                                </a>
+                            </div>
+                            <div class="bf-content">
+                                <h3 class="recent-title">
+                                    <a href="{% url 'blog:details' post.slug %}">{{post.title}}</a>
+                                </h3>
+                                <span class="recent-date">{{post.published_date}} - {{post.author}}</span>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="col-md-6">
+                <ul>
+                    {% for post in career_list %}
+                        <li>
+                           <div class="box-thumbnail">
+                               <a href="{% url 'blog:details' post.slug %}">
+                                    <img src="{{ post.thumbnail.url }}" width="90" height="70">
+                                </a>
+                           </div>
+                           <div class="recent-content">
+                               <h3 class="recent-title">
+                                    <a href="{% url 'blog:details' post.slug %}">{{post.title}}</a>
+                                </h3>
+                               <span class="recent-date">{{post.published_date}} - {{post.author}}</span>
+                           </div>
+                           <div class="clear"></div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End of Career Section-->
+
+<!--Tutorials and How to guides-->
+<div class="popular-posts">
+    <div class="title">
+        <h2><span class="gap"></span>TUTORIALS</h2>
+        <span class="title-span"></span>
+    </div>
+</div>
+<div class="card-deck">
+    {% for post in tuts_guides_list  %}
+        <div class="card text-center" style="border: none;">
+                <img class="card-img-top" src="{{ post.thumbnail.url }}" alt="{{post.title}}" style="height: 250px;">
+            <div class="card-body">
+                <h2 class="post-title">{{post.title}}</h2>
+                <span class="recent-date">{{post.published_date}} - {{post.author}}</span>
+                <br>
+                <a class="read-more" href="{% url 'blog:details' post.slug %}">Read More</a>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+<!--End of tutorials-->
+
+<!--Campus-->
+<div class="campus_list">
+    <div class="popular-posts">
+        <div class="title">
+            <h2><span class="gap"></span>Campus</h2>
+            <span class="title-span"></span>
+        </div>
+    </div>
+    <div class="widget-content">
+        <div class="row">
+            <div class="col-md-6">
+                {% for post in first_campus%}
+                    <div class="bx-first">
+                        <div class="bx-item">
+                            <div class="box-thumbnail">
+                                <a href="{% url 'blog:details' post.slug %}">
+                                    <img src="{{ post.thumbnail.url }}">
+                                </a>
+                            </div>
+                            <div class="bf-content">
+                                <h3 class="recent-title">
+                                    <a href="{% url 'blog:details' post.slug %}">{{post.title}}</a>
+                                </h3>
+                                <span class="recent-date">{{post.published_date}} - {{post.author}}</span>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="col-md-6">
+                <ul>
+                    {% for post in campus_list %}
+                        <li>
+                           <div class="box-thumbnail">
+                               <a href="{% url 'blog:details' post.slug %}">
+                                    <img src="{{ post.thumbnail.url }}" width="90" height="70">
+                                </a>
+                           </div>
+                           <div class="recent-content">
+                               <h3 class="recent-title">
+                                    <a href="{% url 'blog:details' post.slug %}">{{post.title}}</a>
+                                </h3>
+                               <span class="recent-date">{{post.published_date}} - {{post.author}}</span>
+                           </div>
+                           <div class="clear"></div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End of Campus Section -->
+
+<!--Profiles and Interview-->
+<div class="popular-posts">
+    <div class="title">
+        <h2><span class="gap"></span>Interviews</h2>
+        <span class="title-span"></span>
+    </div>
+</div>
+<div class="card-deck">
+    {% for post in prof_interviews_list %}
+        <div class="card text-center" style="border: none;">
+                <img class="card-img-top" src="{{ post.thumbnail.url }}" alt="{{post.title}}" style="height: 250px;">
+            <div class="card-body">
+                <h2 class="post-title">{{post.title}}</h2>
+                <span class="recent-date">{{post.published_date}} - {{post.author}}</span>
+                <br>
+                <a class="read-more" href="{% url 'blog:details' post.slug %}">Read More</a>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+<!-- End of Profiles and interviews-->
+
+<!--Islam-->
+<div class="campus_list">
+    <div class="popular-posts">
+        <div class="title">
+            <h2><span class="gap"></span>Islam</h2>
+            <span class="title-span"></span>
+        </div>
+    </div>
+    <div class="widget-content">
+        <div class="row">
+            <div class="col-md-6">
+                {% for post in first_islam %}
+                    <div class="bx-first">
+                        <div class="bx-item">
+                            <div class="box-thumbnail">
+                                <a href="{% url 'blog:details' post.slug %}">
+                                    <img src="{{ post.thumbnail.url }}">
+                                </a>
+                            </div>
+                            <div class="bf-content">
+                                <h3 class="recent-title">
+                                    <a href="{% url 'blog:details' post.slug %}">{{post.title}}</a>
+                                </h3>
+                                <span class="recent-date">{{post.published_date}} - {{post.author}}</span>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="col-md-6">
+                <ul>
+                    {% for post in islam_list %}
+                        <li>
+                           <div class="box-thumbnail">
+                               <a href="{% url 'blog:details' post.slug %}">
+                                    <img src="{{ post.thumbnail.url }}" width="90" height="70">
+                                </a>
+                           </div>
+                           <div class="recent-content">
+                               <h3 class="recent-title">
+                                    <a href="{% url 'blog:details' post.slug %}">{{post.title}}</a>
+                                </h3>
+                               <span class="recent-date">{{post.published_date}} - {{post.author}}</span>
+                           </div>
+                           <div class="clear"></div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End of Islam-->
+
+<!-- END CATEGORIES POSTS -->
+
+
+{% endblock post_list %}
+
+
+<!-- RANDOM POSTS-->
+{% block random_posts %}
+    <div class="popular-posts">
+        <div class="title">
+            <h2><span class="gap"></span>Random Posts</h2>
+            <span class="title-span"></span>
+        </div>
+        <div class="content">
+            <ul>
+                {% for post in random_posts %}
+                    <li>
+                        <div class="item-content">
+                            <div class="item-thumbnail">
+                                <a href="{% url 'blog:details' post.slug %}">
+                                    <img src="{{ post.thumbnail.url }}" class="item-thumb" width="72", height="72", border="0">
+                                </a>
+                            </div>
+                            <div class="item-title">
+                                <a class="item-link" href="{% url 'blog:details' post.slug %}">{{post.title}}</a>
+                            </div>
+                            <div id="meta-post">
+                                <p>{{post.published_date}}</p>
+                            </div>
+                        </div>
+                        <div style="clear: both;"></div>
+                    </li>
+
+                {% endfor %}
+            </ul>
+        </div>  
+    </div>
+{% endblock random_posts %}
+<!--END OF RANDOM POSTS-->
+
+
+
+<!-- POPULAR POSTS -->
+{% block popular_posts %}
+	<div class="popular-posts">
+        <div class="title">
+            <h2><span class="gap"></span>Popular Posts</h2>
+            <span class="title-span"></span>
+        </div>
+		<div class="content">
+            <ul>
+                {% for post in popular_posts %}
+                    <li>
+                        <div class="item-content">
+                            <div class="item-thumbnail">
+                                <a href="{% url 'blog:details' post.slug %}">
+                                    <img src="{{ post.thumbnail.url }}" class="item-thumb" width="72", height="72", border="0">
+                                </a>
+                            </div>
+                            <div class="item-title">
+								<a class="item-link" href="{% url 'blog:details' post.slug %}">{{post.title}}</a>
+                            </div>
+                            <div id="meta-post">
+                                <p>{{post.category}} - {{post.author}}</p>
+                            </div>
+                        </div>
+                        <div style="clear: both;"></div>
+                    </li>
+
+                {% endfor %}
+            </ul>
+        </div>	
+	</div>
+{% endblock popular_posts %}
+<!-- END POPULAR POSTS -->

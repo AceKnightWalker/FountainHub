@@ -1,0 +1,117 @@
+{%  load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" initial-scale=1>
+    <!--Bootstrap CSS-->
+     <link rel="stylesheet" type="text/css" href="{% static 'css\bootstrap.min.css' %}">
+    <!--Blog and News CSS-->
+	   <link rel="stylesheet" type="text/css" href="{% static 'css\blog.css' %}">
+     <!--Event CSS-->
+     <link rel="stylesheet" type="text/css" href="{% static 'css\event.css' %}">
+     <!--Account CSS-->
+     <link rel="stylesheet" type="text/css" href="{% static 'css\account.css' %}">
+     <!--Home CSS-->
+     <link rel="stylesheet" type="text/css" href="{% static 'css\home.css' %}">
+    <title>{% block title %}{% endblock title%}</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <a class="navbar-brand" href="\">FountainHub</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+    		<ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="\">Home</a>
+            </li>
+      			<li class="nav-item">
+        			<a class="nav-link" href="\news">News</a>
+      			</li>
+      			<li class="nav-item">
+        			<a class="nav-link" href="\blog">Blog</a>
+      			</li>
+      			<li class="nav-item">
+        			<a class="nav-link" href="\event">Events</a>
+      			</li>
+                <li class="nav-item">
+        			<a class="nav-link" href="\polls">Polls</a>
+      			</li>
+    		</ul>
+    		<ul class="navbar-nav navbar-left">
+    			<li class="nav-item">
+    				{% if request.user.is_authenticated %}
+              
+    					<form class="logout-link" action="{% url 'logout'%}" method="post">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-link nav-btn">Logout</button>
+                  /
+                  <a href="{% url 'password_change' %}">Change password</a>
+              </form>
+
+              {% else %}
+
+              <form class="logout-link" action="{% url 'signup'%}">
+                  <a href="{% url 'signup' %}">Create Account</a>
+                  {% csrf_token %}
+                  /
+                  <a href="{% url 'login' %}">login</a>
+              </form>
+
+              {% endif %}                
+    			</li>
+    		</ul>
+  		</div>
+	</nav>
+    {% block header %}
+    {% endblock %}
+		{% block content %}
+		{% endblock %}	
+	
+
+
+    <div class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg col-md col-sm learn">
+            <h2>Learn More</h2>
+            <ul>
+              <li>About FountainHub</li>
+              <li>Event Registration</li>
+              <li>Meet the Team</li>
+            </ul>
+          </div>
+
+          <div class="col-lg col-md col-sm involved">
+            <h2>Get Involved</h2>
+            <ul>
+              <li>Become a Reporter</li>
+              <li>
+                <a href="{% url 'blog:add_post' %}">Share your writeups</a>
+              </li>
+              <li>Join the Team</li>
+            </ul>
+          </div>
+
+          <div class="col-lg col-md col-sm follow">
+            <h2>Follow Us</h2>
+            <ul>
+              <li>Facebook</li>
+              <li>Instagram</li>
+              <li>Twitter</li>
+            </ul>
+          </div>
+        </div>
+        
+      </div>
+
+    </div>
+	<!--Bootstrap Javascript-->
+  <script type="text/javascript" src="{% static 'js\jquery-3.4.1.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js\bootstrap.min.js' %}"></script>
+</body>
+</html>

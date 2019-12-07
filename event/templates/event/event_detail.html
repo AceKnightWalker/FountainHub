@@ -1,0 +1,42 @@
+{% extends "./event_base.html" %}
+{% block title %}{{event.title}}{% endblock %}
+
+{% block event_detail %}
+
+<!-- Make a division col-lg-8 other section should contain upcoming events-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8">               
+                <div class="post-detail">
+                    <img src="{{ event.thumbnail.url }}" alt="{{event.title}}">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="popular-posts">
+                    <div class="title">
+                        <h2><span class="gap"></span>Details</h2>
+                        <span class="title-span"></span>
+                    </div>
+                    <p>Date : {{event.start_date}}</p>
+                    {% if event.end_date %}
+                        <p>End date : {{event.start_date}}</p>
+                    {% endif %}
+                    <p>Time : {{event.time}}</p>
+                    <p>Organized by : {{event.organizer}}</p>
+                    <br>
+                    <h1 class="event_title" style="font-size: 17px;">About event</h1>
+                    <p>{{ event.event_brief|safe }}</p>
+                    <br>
+                    <h1 class="event_title" style="font-size: 17px;">About {{event.organizer}}</h1>
+                    <p>{{ event.organizer_info|safe }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock event_detail %}
+
+
+<!-- LATEST EVENTS-->
+{% block latest_events %}
+    
+{% endblock latest_events %}
