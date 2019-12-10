@@ -117,6 +117,7 @@ def campus_post(request):
     'random_posts': random_posts,
     'category_list': category_list,
     'category': category,
+    'group': group,
     }
     return render(request, 'blog/category_list.html', context)
 
@@ -137,6 +138,7 @@ def islam_post(request):
     'random_posts': random_posts,
     'category_list': category_list,
     'category': category,
+    'group': group,
     }
     return render(request, 'blog/category_list.html', context)
 
@@ -158,6 +160,7 @@ def interview_post(request):
     'random_posts': random_posts,
     'category_list': category_list,
     'category': category,
+    'group': group,
     }
     return render(request, 'blog/category_list.html', context)
 
@@ -178,6 +181,7 @@ def tutorial_post(request):
     'random_posts': random_posts,
     'category_list': category_list,
     'category': category,
+    'group': group,
     }
     return render(request, 'blog/category_list.html', context)
 
@@ -197,6 +201,7 @@ def others_post(request):
     'random_posts': random_posts,
     'category_list': category_list,
     'category': category,
+    'group': group,
     }
     return render(request, 'blog/category_list.html', context)
 
